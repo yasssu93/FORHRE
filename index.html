@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentine Prototype</title>
+  <style>
+    :root{
+      --pink:#ff3ea5;
+      --pink2:#ff6ec7;
+      --gray:#8a8f98;
+      --bg1:#fff7fb;
+      --bg2:#ffffff;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(circle at 30% 20%, var(--bg1), var(--bg2));
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      overflow:hidden;
+    }
+
+    .card{
+      width:min(680px, 92vw);
+      min-height: 360px;
+      background: rgba(255,255,255,0.75);
+      border: 1px solid rgba(255,62,165,0.12);
+      box-shadow: 0 20px 60px rgba(18, 18, 18, 0.10);
+      border-radius: 28px;
+      backdrop-filter: blur(8px);
+      padding: 44px 28px;
+      position:relative;
+      text-align:center;
+    }
+
+    .emoji{
+      font-size: 62px;
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .sub{
+      color: rgba(0,0,0,0.55);
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    h1{
+      margin: 0 0 26px;
+      font-size: clamp(22px, 3.3vw, 34px);
+      font-weight: 700;
+      color: #c01573;
+    }
+
+    .buttons{
+      position:relative;
+      height: 120px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 18px;
+      margin-top: 10px;
+    }
+
+    button{
+      border:0;
+      padding: 12px 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 16px;
+      cursor:pointer;
+      transition: transform .12s ease, box-shadow .12s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    #yesBtn{
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      color: white;
+      box-shadow: 0 14px 30px rgba(255,62,165,0.25);
+    }
+
+    #yesBtn:active{ transform: scale(0.98); }
+    #yesBtn:hover{ transform: translateY(-1px); }
+
+    #noBtn{
+      background: rgba(138,143,152,0.18);
+      color: #2a2f36;
+      border: 1px solid rgba(138,143,152,0.25);
+      position: relative; /* on le basculera en absolute quand il fuit */
+    }
+
+    .result{
+      margin-top: 16px;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1f2937;
+      min-height: 26px;
+    }
+
+    /* hearts floating */
+    .heart{
+      position:absolute;
+      bottom:-40px;
+      font-size: 18px;
+      opacity: 0.75;
+      animation: floatUp linear forwards;
+      filter: drop-shadow(0 6px 10px rgba(0,0,0,0.08));
+      pointer-events:none;
+    }
+
+    @keyframes floatUp{
+      from{ transform: translateY(0) translateX(0) scale(1); opacity: .0; }
+      10%{ opacity:.85; }
+      to{ transform: translateY(-110vh) translateX(var(--drift)) scale(1.2); opacity: 0; }
+    }
+
+    .tiny{
+      position:absolute;
+      top:18px;
+      left:20px;
+      font-size:12px;
+      color: rgba(0,0,0,0.35);
+    }
+  </style>
+</head>
+<body>
+  <div class="card" id="card">
+    <div class="tiny">💘 clickable prototype</div>
+    <div class="emoji">😊</div>
+    <div class="sub">✨ Une question très importante…</div>
+    <h1 id="question">Will you be my Valentine, Mansi? 💝</h1>
+
+    <div class="buttons" id="btnArea">
+      <button id="yesBtn">Yes</button>
+      <button id="noBtn">No</button>
+    </div>
+
+    <div class="result" id="result"></div>
+  </div>
+
+  <script>
+    // ======= Personnalisation rapide =======
+    const name = "Mansi";  // <- change le prénom ici
+    document.getElementById("question").textContent = `Will you be my Valentine, ${name}? 💝`;
+
+    const card = document.getElementById("card");
+    const btnArea = document.getElementById("btnArea");
+    const noBtn = document.getElementById("noBtn");
+    const yesBtn = document.getElementById("yesBtn");
+    const result = document.getElementById("result");
+
+    // Crée des coeurs qui montent
+    function spawnHeart() {
+      const h = document.createElement("div");
+      h.className = "heart";
+      const hearts = ["💗","💖","💕","💘","💝"];
+      h.textContent = hearts[Math.floor(Math.random()*hearts.length)];
+
+      const x = Math.random() * 100; // %
+      const drift = (Math.random()*160 - 80).toFixed(0) + "px";
+      const dur = (Math.random()*2.5 + 3.0).toFixed(2) + "s";
+      const size = (Math.random()*14 + 14).toFixed(0) + "px";
+
+      h.style.left = x + "%";
+      h.style.setProperty("--drift", drift);
+      h.style.animationDuration = dur;
+      h.style.fontSize = size;
+
+      card.appendChild(h);
+      setTimeout(() => h.remove(), (parseFloat(dur) + 0.2) * 1000);
+    }
+    setInterval(spawnHeart, 350);
+
+    // Place le bouton No aléatoirement dans la zone des boutons
+    function moveNoButton() {
+      const areaRect = btnArea.getBoundingClientRect();
+      const btnRect = noBtn.getBoundingClientRect();
+
+      // passer en absolute pour pouvoir le déplacer dans la zone
+      noBtn.style.position = "absolute";
+
+      const padding = 8;
+      const maxX = areaRect.width - btnRect.width - padding;
+      const maxY = areaRect.height - btnRect.height - padding;
+
+      const x = Math.max(padding, Math.random() * maxX);
+      const y = Math.max(padding, Math.random() * maxY);
+
+      noBtn.style.left = `${x}px`;
+      noBtn.style.top = `${y}px`;
+
+      // petite secousse fun
+      noBtn.style.transform = `translateY(-1px)`;
+      setTimeout(() => (noBtn.style.transform = ""), 80);
+    }
+
+    // Déclencheur desktop + mobile
+    // Desktop: quand on s'approche (mouseover)
+    noBtn.addEventListener("mouseover", moveNoButton);
+
+    // Mobile: quand on touche (touchstart) ou qu'on essaie de cliquer
+    noBtn.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      moveNoButton();
+    }, { passive: false });
+
+    noBtn.addEventListener("click", (e) => {
+      e.preventDefault();
+      moveNoButton();
+    });
+
+    yesBtn.addEventListener("click", () => {
+      result.textContent = `YAY! 💖 Je savais que tu dirais oui, ${name} 😄`;
+      // petite pluie de coeurs
+      for (let i = 0; i < 18; i++) setTimeout(spawnHeart, i * 60);
+      yesBtn.disabled = true;
+      noBtn.disabled = true;
+      yesBtn.style.opacity = 0.85;
+      noBtn.style.opacity = 0.6;
+      noBtn.style.cursor = "default";
+      yesBtn.style.cursor = "default";
+    });
+
+    // Optionnel: faire fuir le No au chargement une première fois
+    setTimeout(moveNoButton, 300);
+  </script>
+</body>
+</html>
