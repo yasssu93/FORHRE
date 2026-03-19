@@ -182,8 +182,11 @@ body {
 .photo-label {
   position: absolute; bottom: 2px; left: 50%;
   transform: translateX(-50%);
-  font-size: 0.7rem; color: var(--text-light);
+  font-size: 0.68rem; color: var(--text-light);
   white-space: nowrap; font-style: italic;
+  max-width: 140px;
+  overflow: hidden; text-overflow: ellipsis;
+  text-align: center;
 }
 
 /* ── Countdown ── */
@@ -191,13 +194,13 @@ body {
   background: #fffc;
   backdrop-filter: blur(12px);
   border-radius: 2rem;
-  padding: clamp(1.5rem,4vw,2.5rem) clamp(1.2rem,5vw,3rem);
+  padding: clamp(1.2rem,3vw,2.5rem) clamp(0.8rem,3vw,2.5rem);
   box-shadow: 0 12px 60px #f4a7b922, 0 2px 8px #d4607a11;
   text-align: center;
   animation: fadeUp 1s 0.5s ease both;
   border: 1px solid #fde8ee;
   position: relative; overflow: hidden;
-  width: min(95vw, 520px);
+  width: min(96vw, 520px);
 }
 .countdown-card::before {
   content:''; position:absolute; inset:0;
@@ -205,33 +208,35 @@ body {
   pointer-events:none;
 }
 .countdown-label {
-  font-size: clamp(0.7rem,2.5vw,0.85rem);
-  letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--mauve); margin-bottom: 1.5rem; font-weight: 300;
+  font-size: clamp(0.6rem,2vw,0.85rem);
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--mauve); margin-bottom: 1.2rem; font-weight: 300;
 }
 .countdown-grid {
-  display: flex; gap: clamp(0.6rem,2vw,1.5rem);
+  display: flex; gap: clamp(0.3rem,1.5vw,1.2rem);
   align-items: center; justify-content: center;
+  flex-wrap: nowrap; width: 100%;
 }
-.time-unit { display:flex; flex-direction:column; align-items:center; gap:0.3rem; }
+.time-unit { display:flex; flex-direction:column; align-items:center; gap:0.3rem; flex:1; }
 .time-value {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2rem,8vw,4rem);
+  font-size: clamp(1.6rem,5.5vw,3.8rem);
   font-weight: 700; color: var(--rose-dark);
-  line-height: 1; min-width: 2.5ch; text-align: center;
+  line-height: 1; text-align: center; width: 100%;
   transition: transform 0.2s ease;
 }
-.time-value.tick { transform: scale(1.18); }
+.time-value.tick { transform: scale(1.15); }
 .time-name {
-  font-size: clamp(0.55rem,1.5vw,0.65rem);
-  letter-spacing: 0.25em; text-transform: uppercase;
+  font-size: clamp(0.5rem,1.2vw,0.65rem);
+  letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--text-light);
 }
 .separator {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem,5vw,2.5rem);
+  font-size: clamp(1.4rem,4vw,2.5rem);
   color: var(--rose); margin-bottom: 1.5rem;
   animation: blink 1s step-end infinite;
+  flex-shrink: 0;
 }
 @keyframes blink { 50%{opacity:0;} }
 
@@ -491,30 +496,21 @@ body {
   <div class="photos">
     <div class="photo-wrap">
       <div class="photo-frame">
-        <div class="photo-placeholder">
-          <span class="icon">📷</span>
-          <span>Notre photo</span>
-        </div>
+        <img src="photo1.jpg" alt="Ma préférée" style="width:100%;height:100%;object-fit:cover;">
       </div>
-      <div class="photo-label">Notre premier souvenir</div>
+      <div class="photo-label">Mon sourire préféré au monde 🌸</div>
     </div>
     <div class="photo-wrap">
       <div class="photo-frame">
-        <div class="photo-placeholder">
-          <span class="icon">🌸</span>
-          <span>Ta photo</span>
-        </div>
+        <img src="photo2.png" alt="Saint Valentin" style="width:100%;height:100%;object-fit:cover;">
       </div>
-      <div class="photo-label">Ma préférée</div>
+      <div class="photo-label">Notre premier 14 février 💕</div>
     </div>
     <div class="photo-wrap">
       <div class="photo-frame">
-        <div class="photo-placeholder">
-          <span class="icon">💕</span>
-          <span>Nous deux</span>
-        </div>
+        <img src="photo3.png" alt="Premier bouquet" style="width:100%;height:100%;object-fit:cover;">
       </div>
-      <div class="photo-label">Pour toujours</div>
+      <div class="photo-label">Les premières fleurs, pas les dernières 🌷</div>
     </div>
   </div>
 
