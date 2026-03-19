@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Une page romantique et élégante pour Srabonti" />
   <title>Pour Srabonti 🌸</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -21,9 +20,7 @@
       --card: rgba(255, 252, 253, 0.82);
       --card-border: rgba(255, 255, 255, 0.85);
       --shadow-soft: 0 12px 40px rgba(212, 96, 122, 0.12);
-      --shadow-strong: 0 18px 60px rgba(212, 96, 122, 0.18);
       --radius-xl: 30px;
-      --radius-lg: 22px;
       --radius-pill: 999px;
     }
 
@@ -41,15 +38,8 @@
       font-family: 'Cormorant Garamond', serif;
     }
 
-    img {
-      display: block;
-      max-width: 100%;
-    }
-
-    button,
-    input {
-      font: inherit;
-    }
+    img { display: block; max-width: 100%; }
+    button { font: inherit; }
 
     .aurora {
       position: fixed;
@@ -68,28 +58,22 @@
     }
 
     .aurora-blob:nth-child(1) {
-      width: 56vw;
-      height: 46vh;
-      top: -8%;
-      left: -10%;
+      width: 56vw; height: 46vh;
+      top: -8%; left: -10%;
       background: radial-gradient(circle, rgba(244, 167, 185, 0.95), rgba(253, 232, 238, 0.25));
       animation-duration: 12s;
     }
 
     .aurora-blob:nth-child(2) {
-      width: 48vw;
-      height: 60vh;
-      right: -8%;
-      bottom: -12%;
+      width: 48vw; height: 60vh;
+      right: -8%; bottom: -12%;
       background: radial-gradient(circle, rgba(232, 196, 160, 0.95), rgba(244, 167, 185, 0.20));
       animation-duration: 16s;
     }
 
     .aurora-blob:nth-child(3) {
-      width: 34vw;
-      height: 38vh;
-      top: 28%;
-      left: 32%;
+      width: 34vw; height: 38vh;
+      top: 28%; left: 32%;
       background: radial-gradient(circle, rgba(201, 113, 138, 0.35), rgba(251, 211, 222, 0.22));
       animation-duration: 10s;
     }
@@ -129,7 +113,6 @@
       pointer-events: none;
       font-size: 1rem;
       animation: sparkle-fade 0.8s ease forwards;
-      will-change: transform, opacity;
     }
 
     @keyframes sparkle-fade {
@@ -201,7 +184,7 @@
     }
 
     .intro-card {
-      width: min(960px, 96vw);
+      width: min(1080px, 96vw);
       padding: 1.1rem;
       border-radius: var(--radius-xl);
       animation: fadeUp 1s 0.12s ease both;
@@ -230,12 +213,12 @@
       isolation: isolate;
     }
 
-    .photo-wrap:nth-child(1) .photo-frame { transform: rotate(-2deg); }
-    .photo-wrap:nth-child(2) .photo-frame { transform: rotate(1deg); }
-    .photo-wrap:nth-child(3) .photo-frame { transform: rotate(3deg); }
+    .photo-wrap:nth-child(1) .photo-frame { transform: scale(1.1) rotate(-2deg); }
+    .photo-wrap:nth-child(2) .photo-frame { transform: scale(1.1) rotate(1deg); }
+    .photo-wrap:nth-child(3) .photo-frame { transform: scale(1.1) rotate(3deg); }
 
     .photo-wrap:hover .photo-frame {
-      transform: translateY(-8px) rotate(0deg) scale(1.01);
+      transform: scale(1.14) translateY(-8px) rotate(0deg);
       box-shadow: 0 18px 50px rgba(212, 96, 122, 0.26);
     }
 
@@ -253,28 +236,6 @@
       object-fit: cover;
     }
 
-    .photo-fallback {
-      position: absolute;
-      inset: 0;
-      display: none;
-      place-items: center;
-      text-align: center;
-      padding: 1rem;
-      color: white;
-      background: linear-gradient(160deg, rgba(244,167,185,0.95), rgba(201,113,138,0.95));
-      font-size: 1rem;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .photo-wrap.is-missing .photo-fallback {
-      display: grid;
-    }
-
-    .photo-wrap.is-missing img {
-      display: none;
-    }
-
     .photo-label {
       text-align: center;
       padding-top: 0.95rem;
@@ -284,7 +245,7 @@
     }
 
     .countdown-card {
-      width: min(580px, 96vw);
+      width: min(700px, 96vw);
       padding: clamp(1.2rem, 3vw, 2.4rem);
       border-radius: 2rem;
       text-align: center;
@@ -351,15 +312,6 @@
       color: var(--text-light);
     }
 
-    .countdown-target {
-      position: relative;
-      z-index: 1;
-      margin-top: 1rem;
-      color: var(--text-light);
-      font-size: 1rem;
-      font-style: italic;
-    }
-
     .date-input-section {
       position: relative;
       z-index: 1;
@@ -370,31 +322,6 @@
       flex-direction: column;
       align-items: center;
       gap: 0.7rem;
-    }
-
-    .date-input-label {
-      font-size: 0.82rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--text-light);
-    }
-
-    .date-input {
-      width: min(240px, 100%);
-      text-align: center;
-      padding: 0.72rem 1rem;
-      border: 2px solid rgba(244,167,185,0.22);
-      border-radius: var(--radius-pill);
-      color: var(--text);
-      background: rgba(255,255,255,0.72);
-      outline: none;
-      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
-    }
-
-    .date-input:focus {
-      border-color: var(--rose);
-      box-shadow: 0 0 0 4px rgba(244, 167, 185, 0.14);
-      transform: translateY(-1px);
     }
 
     .reasons-section,
@@ -505,9 +432,7 @@
       animation: unfold 0.45s cubic-bezier(.34,1.56,.64,1) both;
     }
 
-    .secret-message.open {
-      display: block;
-    }
+    .secret-message.open { display: block; }
 
     .quote-mark {
       font-family: 'Playfair Display', serif;
@@ -678,34 +603,15 @@
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-      }
-    }
-
     @media print {
       body { background: white; }
-      .aurora,
-      .petals-container,
-      #confetti,
-      .date-input-section,
-      .actions,
-      .secret-btn { display: none !important; }
-      .intro-card,
-      .countdown-card,
-      .section-card,
-      .secret-message {
+      .aurora, .petals-container, #confetti, .actions, .secret-btn { display: none !important; }
+      .intro-card, .countdown-card, .section-card, .secret-message {
         box-shadow: none !important;
         border: 1px solid #f2d8de !important;
         background: white !important;
       }
-      .secret-message {
-        display: block !important;
-      }
+      .secret-message { display: block !important; }
     }
   </style>
 </head>
@@ -728,26 +634,23 @@
 
     <section class="intro-card glass" aria-label="Galerie de photos">
       <div class="photos">
-        <figure class="photo-wrap" data-file="photo1.jpg">
+        <figure class="photo-wrap">
           <div class="photo-frame">
             <img src="photo1.jpg" alt="Ma préférée" loading="eager" />
-            <div class="photo-fallback">photo1.jpg introuvable</div>
           </div>
           <figcaption class="photo-label">Mon sourire préféré au monde 🌸</figcaption>
         </figure>
 
-        <figure class="photo-wrap" data-file="photo2.png">
+        <figure class="photo-wrap">
           <div class="photo-frame">
             <img src="photo2.png" alt="Notre premier 14 février" loading="lazy" />
-            <div class="photo-fallback">photo2.png introuvable</div>
           </div>
           <figcaption class="photo-label">Notre premier 14 février 💕</figcaption>
         </figure>
 
-        <figure class="photo-wrap" data-file="photo3.png">
+        <figure class="photo-wrap">
           <div class="photo-frame">
             <img src="photo3.png" alt="Premier bouquet" loading="lazy" />
-            <div class="photo-fallback">photo3.png introuvable</div>
           </div>
           <figcaption class="photo-label">Les premières fleurs, pas les dernières 🌷</figcaption>
         </figure>
@@ -775,8 +678,6 @@
           <div class="time-name">Secondes</div>
         </div>
       </div>
-
-      
 
       <div class="date-input-section">
         <div style="font-style: italic; color: var(--text-light); font-size: 1.05rem; text-align:center;">
@@ -843,8 +744,6 @@
     };
 
     const petalsContainer = document.getElementById('petals');
-    const birthdayInput = null;
-    const targetLabel = document.getElementById('targetLabel');
     const celebration = document.getElementById('celebration');
     const secretBtn = document.getElementById('secretBtn');
     const secretMsg = document.getElementById('secretMsg');
@@ -903,14 +802,6 @@
       return String(value).padStart(2, '0');
     }
 
-    function formatTargetDate(date) {
-      return new Intl.DateTimeFormat('fr-FR', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      }).format(date);
-    }
-
     function setNextOccurrence(dateStr) {
       const parts = dateStr.split('-').map(Number);
       if (parts.length !== 3 || parts.some(Number.isNaN)) return;
@@ -924,7 +815,6 @@
       }
 
       targetDate = candidate;
-      
     }
 
     function animateTick(el, value) {
@@ -952,6 +842,7 @@
 
     function updateCountdown() {
       if (!targetDate) return;
+
       const now = new Date();
       const diff = targetDate.getTime() - now.getTime();
 
@@ -999,9 +890,7 @@
 
     function checkSecretAvailability() {
       const now = new Date();
-      const selectedDate = birthdayInput.value || CONFIG.defaultBirthday;
-      const [, month, day] = selectedDate.split('-').map(Number);
-      const isBirthday = now.getMonth() === month - 1 && now.getDate() === day;
+      const isBirthday = now.getMonth() === 4 && now.getDate() === 22;
 
       if (!isBirthday) {
         secretBtn.disabled = true;
@@ -1009,7 +898,7 @@
         secretBtn.style.cursor = 'not-allowed';
         secretBtn.style.filter = 'grayscale(0.45)';
 
-        const nextBirthday = new Date(now.getFullYear(), month - 1, day, 0, 0, 0, 0);
+        const nextBirthday = new Date(now.getFullYear(), 4, 22, 0, 0, 0, 0);
         if (nextBirthday <= now) nextBirthday.setFullYear(nextBirthday.getFullYear() + 1);
 
         const diff = nextBirthday - now;
@@ -1057,9 +946,7 @@
           try {
             await navigator.share(shareData);
             return;
-          } catch (error) {
-            // Ignore cancellation and fallback below when needed.
-          }
+          } catch (error) {}
         }
 
         try {
@@ -1072,14 +959,6 @@
         } catch (error) {
           alert('Impossible de copier le lien automatiquement.');
         }
-      });
-    }
-
-    function setupImageFallbacks() {
-      document.querySelectorAll('.photo-wrap img').forEach((img) => {
-        img.addEventListener('error', () => {
-          img.closest('.photo-wrap')?.classList.add('is-missing');
-        });
       });
     }
 
@@ -1156,7 +1035,6 @@
       createPetals();
       initSparkles();
       renderReasons();
-      setupImageFallbacks();
       initShare();
       resizeCanvas();
 
@@ -1166,8 +1044,6 @@
 
       setInterval(updateCountdown, 1000);
       setInterval(checkSecretAvailability, 30000);
-
-      
 
       secretBtn.addEventListener('click', toggleSecretMessage);
       document.getElementById('closeCelebration').addEventListener('click', hideCelebration);
